@@ -1,5 +1,5 @@
 {
-  "name": "create-xgen",
+  "name": "xgen",
   "version": "1.0.0",
   "description": "Use xgen to kickstart your projects, integrate features, and streamline your Express development workflow.",
   "main": "bin/index.js",
@@ -12,7 +12,7 @@
     "url": "https://github.com/Younesfdj/xgen-cli/issues"
   },
   "bin": {
-    "create-xgen": "bin/index.js"
+    "xgen": "bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
