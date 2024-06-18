@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Use xgen to kickstart your projects, integrate features, and streamline your Express development workflow.",
   "main": "bin/index.js",
-  "type": "module",
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/Younesfdj/xgen-cli"
@@ -18,12 +18,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf bin && npx tsc && npm install -g .",
-    "watch": "npx tsc -w"
+    "watch": "npx tsc -w",
+    "no-nm": "npm install --package-lock-only --no-package-lock"
   },
   "author": "younesfdj <ferradjiyounes69@gmail.com> (https://github.com/Younesfdj)",
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",
+    "enquirer": "^2.4.1",
     "rimraf": "^5.0.7",
     "yargs": "^17.7.2"
   },
