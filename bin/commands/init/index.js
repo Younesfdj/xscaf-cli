@@ -1,52 +1,68 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const package_1 = require("../../utils/package");
-const chalk_1 = __importDefault(require("chalk"));
-const enquirer_1 = require("enquirer");
-async function init(args) {
+import { isValidPackageName, toValidPackageName } from "../../utils/package.js";
+import chalk from "chalk";
+import boxen from "boxen";
+import pkg from "enquirer";
+const { prompt } = pkg;
+import { copy } from "../../utils/files.js";
+import path from "path";
+export default async function init(args) {
     let projectNameProvided = false;
     let projectName;
     if (args.length > 1) {
         projectNameProvided = true;
         projectName = args.slice(1).join(" ");
     }
-    const responses = await (0, enquirer_1.prompt)([
+    const responses = await prompt([
         {
             type: "input",
             name: "projectName",
-            message: chalk_1.default.cyan("Project name:"),
+            message: chalk.cyan("Project name:"),
             initial: projectNameProvided ? projectName : "xgen-project",
             skip: projectNameProvided,
         },
         {
             type: "input",
             name: "packageName",
-            message: chalk_1.default.cyan("Package name:"),
-            initial: (answers) => (0, package_1.toValidPackageName)(answers.state.answers.projectName),
-            validate: (input) => (0, package_1.isValidPackageName)(input)
+            message: chalk.cyan("Package name:"),
+            initial: (answers) => toValidPackageName(answers.state.answers.projectName),
+            validate: (input) => isValidPackageName(input)
                 ? true
                 : "Invalid package name\n(use a suit of characters, lowercase, and dashes)",
         },
         {
             type: "select",
             name: "variant",
-            message: chalk_1.default.cyan("Variant:"),
+            message: chalk.cyan("Variant:"),
             choices: [
-                { message: chalk_1.default.yellowBright("JavaScript"), name: "js" },
-                { message: chalk_1.default.blueBright("TypeScript"), name: "ts" },
+                { message: chalk.yellowBright("JavaScript"), name: "js" },
+                { message: chalk.blueBright("TypeScript"), name: "ts" },
             ],
             initial: 0,
         },
         {
             type: "confirm",
             name: "src",
-            message: chalk_1.default.cyan("Use /src folder?"),
+            message: chalk.cyan("Use /src folder?"),
             initial: true,
         },
     ]);
-    console.log(responses);
+    console.log(chalk.blue("\nScaffolding project for you..."));
+    console.time(chalk.blue("Done in"));
+    const templatePath = path.join(process.cwd(), "..", "templates", `express-${responses.variant}`);
+    const destPath = path.join(process.cwd(), responses.projectName);
+    if (responses.src) {
+        copy(templatePath, destPath);
+    }
+    else {
+        copy(templatePath, destPath, [path.join(templatePath, "src")]);
+        copy(path.join(templatePath, "src"), destPath);
+    }
+    console.timeEnd(chalk.blue("Done in"));
+    console.log("\n" +
+        boxen(`cd ${responses.projectName}\nnpm install\nnpm run serve\n`, {
+            padding: 0.5,
+            borderColor: "redBright",
+            borderStyle: "classic",
+            title: "Now run:",
+        }));
 }
-exports.default = init;

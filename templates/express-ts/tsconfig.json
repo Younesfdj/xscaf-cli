@@ -2,18 +2,17 @@
   "compilerOptions": {
     "target": "ES2021",
     "lib": ["es2021", "dom"],
+    "module": "commonjs",
     "rootDir": "src",
     "baseUrl": "src",
-    "outDir": "./bin",
+    "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "resolveJsonModule": true,
-    "module": "node16",
-    "moduleResolution": "node16"
+    "resolveJsonModule": true
   },
   "typedocOptions": {
     "entryPoints": ["src/index.ts"],

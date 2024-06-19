@@ -6,10 +6,12 @@ export function editFile(file: string, callback: (content: string) => string) {
   fs.writeFileSync(file, callback(content), "utf-8");
 }
 
-export function copy(src: string, dest: string) {
+export function copy(src: string, dest: string, skipDir: string[] = []) {
   const stat = fs.statSync(src);
   if (stat.isDirectory()) {
-    copyDir(src, dest);
+    if (!skipDir.includes(src)) {
+      copyDir(src, dest, skipDir);
+    }
   } else {
     fs.copyFileSync(src, dest);
   }
@@ -25,12 +27,16 @@ export function emptyDir(dir: string) {
     fs.rmSync(path.resolve(dir, file), { recursive: true, force: true });
   }
 }
-export function copyDir(srcDir: string, destDir: string) {
+export function copyDir(
+  srcDir: string,
+  destDir: string,
+  skipDir: string[] = []
+) {
   fs.mkdirSync(destDir, { recursive: true });
   for (const file of fs.readdirSync(srcDir)) {
     const srcFile = path.resolve(srcDir, file);
     const destFile = path.resolve(destDir, file);
-    copy(srcFile, destFile);
+    copy(srcFile, destFile, skipDir);
   }
 }
 

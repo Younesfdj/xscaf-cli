@@ -1,6 +1,10 @@
-import { isValidPackageName, toValidPackageName } from "../../utils/package";
+import { isValidPackageName, toValidPackageName } from "../../utils/package.js";
 import chalk from "chalk";
-import { prompt } from "enquirer";
+import boxen from "boxen";
+import pkg from "enquirer";
+const { prompt } = pkg;
+import { copy } from "../../utils/files.js";
+import path from "path";
 
 export default async function init(args: (string | number)[]) {
   let projectNameProvided = false;
@@ -9,7 +13,7 @@ export default async function init(args: (string | number)[]) {
     projectNameProvided = true;
     projectName = args.slice(1).join(" ");
   }
-  const responses = await prompt([
+  const responses: IResponse = await prompt([
     {
       type: "input",
       name: "projectName",
@@ -45,5 +49,34 @@ export default async function init(args: (string | number)[]) {
       initial: true,
     },
   ]);
-  console.log(responses);
+
+  console.log(chalk.blue("\nScaffolding project for you..."));
+  console.time(chalk.blue("Done in"));
+
+  const templatePath = path.join(
+    process.cwd(),
+    "..",
+    "templates",
+    `express-${responses.variant}`
+  );
+
+  const destPath = path.join(process.cwd(), responses.projectName);
+
+  if (responses.src) {
+    copy(templatePath, destPath);
+  } else {
+    copy(templatePath, destPath, [path.join(templatePath, "src")]);
+    copy(path.join(templatePath, "src"), destPath);
+  }
+
+  console.timeEnd(chalk.blue("Done in"));
+  console.log(
+    "\n" +
+      boxen(`cd ${responses.projectName}\nnpm install\nnpm run serve\n`, {
+        padding: 0.5,
+        borderColor: "redBright",
+        borderStyle: "classic",
+        title: "Now run:",
+      })
+  );
 }

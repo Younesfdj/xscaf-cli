@@ -2,8 +2,9 @@
   "name": "xgen",
   "version": "1.0.0",
   "description": "Use xgen to kickstart your projects, integrate features, and streamline your Express development workflow.",
-  "main": "bin/index.js",
-  "type": "commonjs",
+  "exports": "./bin/index.js",
+  "node": ">=18",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/Younesfdj/xgen-cli"
@@ -24,12 +25,15 @@
   "author": "younesfdj <ferradjiyounes69@gmail.com> (https://github.com/Younesfdj)",
   "license": "ISC",
   "dependencies": {
+    "boxen": "^7.1.1",
     "chalk": "^4.1.2",
     "enquirer": "^2.4.1",
     "rimraf": "^5.0.7",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@types/boxen": "^3.0.1",
+    "@types/chalk": "^2.2.0",
     "@types/node": "^20.14.3",
     "@types/yargs": "^17.0.32",
     "typescript": "^5.4.5"
