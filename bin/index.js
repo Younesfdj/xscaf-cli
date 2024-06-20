@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import runXgen from "../dist/index.js";
+import runXscaf from "../dist/index.js";
 
-runXgen();
+runXscaf();

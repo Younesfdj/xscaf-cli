@@ -3,7 +3,7 @@ import swaggerAutogen from "swagger-autogen";
 const doc = {
   info: {
     version: "v1.0.0",
-    title: "xgen app",
+    title: "xscaf app",
   },
   components: {
     securitySchemes: {

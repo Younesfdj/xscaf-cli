@@ -6,8 +6,8 @@ import init from "./commands/init/index.js";
 
 const run = () =>
   yargs(hideBin(process.argv))
-    .example("xgen init express-app", "Initialize a new xgen project")
-    .command("init", "Initialize a new xgen project", {}, function (argv) {
+    .example("xscaf init express-app", "Initialize a new xscaf project")
+    .command("init", "Initialize a new xscaf project", {}, function (argv) {
       init(argv._);
     })
     .demandCommand()

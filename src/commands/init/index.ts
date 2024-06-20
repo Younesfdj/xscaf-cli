@@ -20,7 +20,7 @@ export default async function init(args: (string | number)[]) {
       type: "input",
       name: "projectName",
       message: chalk.cyan("Project name:"),
-      initial: projectNameProvided ? projectName : "xgen-project",
+      initial: projectNameProvided ? projectName : "xscaf-project",
       skip: projectNameProvided,
     },
     {
