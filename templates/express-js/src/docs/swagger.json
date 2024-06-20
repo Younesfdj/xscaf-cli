@@ -1,0 +1,26 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "v1.0.0",
+    "title": "ATM Shop API Documentation"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5005/",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/test": {
+      "get": {
+        "summary": "Test API",
+        "description": "Test API",
+        "responses": {
+          "200": {
+            "description": "Test API"
+          }
+        }
+      }
+    }
+  }
+}

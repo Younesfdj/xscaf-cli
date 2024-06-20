@@ -1,0 +1,22 @@
+{
+  "name": "xgen-express-javascript-starter",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-status-codes": "^2.3.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.0",
+    "tslog": "^4.9.2"
+  }
+}
