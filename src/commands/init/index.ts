@@ -3,7 +3,7 @@ import chalk from "chalk";
 import boxen from "boxen";
 import pkg from "enquirer";
 const { prompt } = pkg;
-import { copy, editFile } from "../../utils/files.js";
+import { copy, editFile, __dirname } from "../../utils/files.js";
 import path from "path";
 
 export default async function init(args: (string | number)[]) {
@@ -57,7 +57,8 @@ export default async function init(args: (string | number)[]) {
 
   // Copy the template to the new project
   const templatePath = path.join(
-    process.cwd(),
+    __dirname,
+    "..",
     "..",
     "templates",
     `express-${responses.variant}`

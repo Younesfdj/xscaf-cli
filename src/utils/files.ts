@@ -1,5 +1,8 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
+
+export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export function editFile(file: string, callback: (content: string) => string) {
   const content = fs.readFileSync(file, "utf-8");

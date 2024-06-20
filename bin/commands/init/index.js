@@ -3,7 +3,7 @@ import chalk from "chalk";
 import boxen from "boxen";
 import pkg from "enquirer";
 const { prompt } = pkg;
-import { copy, editFile } from "../../utils/files.js";
+import { copy, editFile, __dirname } from "../../utils/files.js";
 import path from "path";
 export default async function init(args) {
     // Check if the user provided a project name
@@ -51,7 +51,7 @@ export default async function init(args) {
     console.log(chalk.blue("\nScaffolding project for you..."));
     console.time(chalk.blue("Done in"));
     // Copy the template to the new project
-    const templatePath = path.join(process.cwd(), "..", "templates", `express-${responses.variant}`);
+    const templatePath = path.join(__dirname, "..", "..", "templates", `express-${responses.variant}`);
     const destPath = path.join(process.cwd(), responses.projectName);
     if (responses.src) {
         copy(templatePath, destPath);
