@@ -8,4 +8,7 @@ yargs(hideBin(process.argv))
     init(argv._);
 })
     .demandCommand()
-    .help().argv;
+    .strict()
+    .option("h", { alias: "help" })
+    .option("v", { alias: "version" })
+    .help("help").argv;
