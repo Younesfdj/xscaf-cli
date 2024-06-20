@@ -3,16 +3,18 @@ import chalk from "chalk";
 import boxen from "boxen";
 import pkg from "enquirer";
 const { prompt } = pkg;
-import { copy } from "../../utils/files.js";
+import { copy, editFile } from "../../utils/files.js";
 import path from "path";
 
 export default async function init(args: (string | number)[]) {
+  // Check if the user provided a project name
   let projectNameProvided = false;
   let projectName;
   if (args.length > 1) {
     projectNameProvided = true;
     projectName = args.slice(1).join(" ");
   }
+  // Initialize the prompt
   const responses: IResponse = await prompt([
     {
       type: "input",
@@ -53,6 +55,7 @@ export default async function init(args: (string | number)[]) {
   console.log(chalk.blue("\nScaffolding project for you..."));
   console.time(chalk.blue("Done in"));
 
+  // Copy the template to the new project
   const templatePath = path.join(
     process.cwd(),
     "..",
@@ -68,6 +71,13 @@ export default async function init(args: (string | number)[]) {
     copy(templatePath, destPath, [path.join(templatePath, "src")]);
     copy(path.join(templatePath, "src"), destPath);
   }
+
+  // Update package.json with the new package name
+  editFile(path.join(destPath, "package.json"), (content) => {
+    const newPackageJson = JSON.parse(content);
+    newPackageJson.name = responses.packageName;
+    return JSON.stringify(newPackageJson);
+  });
 
   console.timeEnd(chalk.blue("Done in"));
   console.log(
