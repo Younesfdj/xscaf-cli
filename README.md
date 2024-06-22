@@ -6,18 +6,20 @@
 xscaf is a powerful CLI tool designed to streamline the process of creating and managing Express.js applications. With xscaf, you can scaffold a fully structured backend project in seconds, saving you time and eliminating repetitive coding tasks.
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
 
 ## Features
 
 - **Quick Project Initialization**: Generate a new Express.js project with customizable options for JavaScript or TypeScript.
-- **Structured Folder Setup**: Automatically create a well-organized folder structure with routes, controllers, and services.
-- **Microservices Architecture**: Set up a backend following best practices for scalable microservices.
-- **Swagger Documentation**: Generate Swagger docs out of the box for easy API documentation.
-- **Flexible Configuration**: Support for CommonJS, ESM, and various package managers (npm, pnpm, yarn).
-- **Database and ORM Integration**: Initialize projects with MongoDB, PostgreSQL, Prisma, or Drizzle support.
+- **Structured Folder Setup**: Create organized folders for routes, controllers, and services.
+- **Microservices Architecture**: Best practices for scalable microservices.
+- **Swagger Documentation**: Generate Swagger docs for easy API documentation.
+- **Flexible Configuration**: Support for CommonJS, ESM, npm, pnpm, and yarn.
+- **Database and ORM Integration**: Initialize projects with MongoDB, PostgreSQL, Prisma, or Drizzle.
+- **Additional Tools**: Integrated logger library, Docker Compose file, and GitHub Actions workflow.
 
 ## Usage
 
@@ -35,7 +37,7 @@ USAGE
 
 ## Commands
 
-* [`xscaf init PROJECT_NAME`](#xscaf-init-project_name)
+- [`xscaf init PROJECT_NAME`](#xscaf-init-project_name)
 
 ### `xscaf init PROJECT_NAME`
 
