@@ -1,8 +1,8 @@
-import express from "express";
-import setRouters from "./routes/index.js";
-import errorHandler from "./middlewares/errors.js";
-import "dotenv/config";
-import { log } from "./utils/logger.js";
+const express = require("express");
+const setRouters = require("./routes/index.js");
+const errorHandler = require("./middlewares/errors.js");
+const log = require("./utils/logger.js");
+require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
 

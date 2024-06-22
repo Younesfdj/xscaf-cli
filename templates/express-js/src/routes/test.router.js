@@ -1,8 +1,8 @@
-import { test } from "../controllers/test.controller.js";
-import { Router } from "express";
+const { test } = require("../controllers/test.controller.js");
+const { Router } = require("express");
 
 const testRouter = Router();
 
 testRouter.get("/", test);
 
-export default testRouter;
+module.exports = testRouter;
