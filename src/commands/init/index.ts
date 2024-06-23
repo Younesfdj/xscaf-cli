@@ -73,10 +73,16 @@ export default async function init(args: (string | number)[]) {
     copy(path.join(templatePath, "src"), destPath);
   }
 
-  // Update package.json with the new package name
+  // Update package.json with the new package name and scripts
   editFile(path.join(destPath, "package.json"), (content) => {
     const newPackageJson = JSON.parse(content);
     newPackageJson.name = responses.packageName;
+
+    if (responses.variant === "js") {
+      newPackageJson.scripts.start = responses.src
+        ? "nodemon src/index.js"
+        : "nodemon index.js";
+    }
     return JSON.stringify(newPackageJson);
   });
 
