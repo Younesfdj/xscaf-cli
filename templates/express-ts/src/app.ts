@@ -4,7 +4,6 @@
 import express from "express";
 import setRouters from "./routes";
 import errorHandler from "./middlewares/errors";
-import "dotenv/config";
 
 /**
  * The main application instance.

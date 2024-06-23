@@ -1,15 +1,10 @@
-const express = require("express");
-const setRouters = require("./routes/index.js");
-const errorHandler = require("./middlewares/errors.js");
 const log = require("./utils/logger.js");
+const app = require("./app.js");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
 
-const app = express();
-app.use(express.json());
-
-setRouters(app);
-
-app.use(errorHandler);
+/**
+ * Starts the server and listens on the specified port.
+ */
 app.listen(PORT, () => log.info(`Server is listening on port ${PORT}...`));
