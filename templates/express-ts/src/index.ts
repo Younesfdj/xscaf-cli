@@ -1,15 +1,10 @@
-import express from "express";
-import setRouters from "./routes";
-import errorHandler from "./middlewares/errors";
-import "dotenv/config";
+import { app } from "./app";
 import { log } from "./utils/logger";
 
 const PORT = process.env.PORT || 3000;
 
-const app = express();
-app.use(express.json());
-
-setRouters(app);
-
-app.use(errorHandler);
+/**
+ * Starts the server and listens on the specified port.
+ * @param {number} PORT - The port number to listen on.
+ */
 app.listen(PORT, () => log.info(`Server is listening on port ${PORT}...`));
