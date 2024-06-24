@@ -89,7 +89,7 @@ export default async function init(args: (string | number)[]) {
   console.timeEnd(chalk.blue("Done in"));
   console.log(
     "\n" +
-      boxen(`cd ${responses.projectName}\nnpm install\nnpm run serve\n`, {
+      boxen(`cd ${responses.projectName}\nnpm install\nnpm run dev\n`, {
         padding: 0.5,
         borderColor: "redBright",
         borderStyle: "classic",
