@@ -10,8 +10,14 @@ const run = () =>
     .command("init", "Initialize a new xscaf project", {}, function (argv) {
       init(argv._);
     })
+    .command("$0", "", {}, function (argv) {
+      console.log(
+        `Unrecognized command '${argv._.join(
+          " "
+        )}'\nRun 'xscaf --help' for usage.`
+      );
+    })
     .demandCommand()
-    .strict()
     .alias("v", "version")
     .alias("h", "help")
     .help("help").argv;
