@@ -5,6 +5,11 @@
   "exports": "./bin/index.js",
   "node": ">=18",
   "type": "module",
+  "files": [
+    "/bin",
+    "/dist",
+    "/templates"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Younesfdj/xscaf-cli"
@@ -18,7 +23,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf bin && npx tsc && npm install -g .",
+    "build": "rimraf dist && npx tsc && npm install -g .",
     "watch": "npx tsc -w",
     "no-nm": "npm install --package-lock-only --no-package-lock"
   },
@@ -32,8 +37,6 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@types/boxen": "^3.0.1",
-    "@types/chalk": "^2.2.0",
     "@types/node": "^20.14.3",
     "@types/yargs": "^17.0.32",
     "typescript": "^5.4.5"
