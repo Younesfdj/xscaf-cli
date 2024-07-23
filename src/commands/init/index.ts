@@ -5,6 +5,7 @@ import pkg from "enquirer";
 const { prompt } = pkg;
 import { copy, editFile, __dirname } from "../../utils/files.js";
 import path from "path";
+import { IResponse } from "./types/Response.js";
 
 export default async function init(args: (string | number)[]) {
   // Check if the user provided a project name

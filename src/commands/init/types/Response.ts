@@ -1,4 +1,4 @@
-interface IResponse {
+export interface IResponse {
   projectName: string;
   packageName: string;
   variant: "js" | "ts";

@@ -47,3 +47,10 @@ export function isEmpty(path: string) {
   const files = fs.readdirSync(path);
   return files.length === 0 || (files.length === 1 && files[0] === ".git");
 }
+
+export function dirExists(path: string) {
+  // if not a dir return false
+  if (!fs.existsSync(path)) return false;
+  if (!fs.lstatSync(path).isDirectory()) return false;
+  return true;
+}
