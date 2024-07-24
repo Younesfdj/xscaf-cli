@@ -54,3 +54,11 @@ export function dirExists(path: string) {
   if (!fs.lstatSync(path).isDirectory()) return false;
   return true;
 }
+
+// get the directories only in the specified directory, exclude .git
+export function getAllDirs(rootDirPath: string) {
+  return fs
+    .readdirSync(rootDirPath, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory() && dirent.name !== ".git")
+    .map((dirent) => dirent.name);
+}
