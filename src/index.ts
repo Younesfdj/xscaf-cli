@@ -11,7 +11,10 @@ const run = () =>
   yargs(hideBin(process.argv))
     .example("xscaf init express-app", "Initialize a new xscaf project")
     .example("xscaf add custom-template", "Add a custom scaffolding template")
-    .example("xscaf use custom-template", "Use a custom scaffolding template")
+    .example(
+      "xscaf use -n custom-template",
+      "Use a custom scaffolding template"
+    )
     .command("init", "Initialize a new xscaf project", {}, function (argv) {
       cmdWrapper(init(argv._));
     })
@@ -28,9 +31,19 @@ const run = () =>
         cmdWrapper(add(argv.PATH as string));
       }
     )
-    .command("use", "Use a custom template", {}, function (argv) {
-      cmdWrapper(use());
-    })
+    .command(
+      "use",
+      "Use a custom template",
+      (yargs) =>
+        yargs.option("name", {
+          alias: "n",
+          describe: "The name of template",
+          type: "string",
+        }),
+      function (argv) {
+        cmdWrapper(use(argv.name as string));
+      }
+    )
     .command("$0", false, {}, function (argv) {
       console.log(
         `Unrecognized command '${argv._.join(

@@ -5,12 +5,17 @@ import { getAllDirs, __dirname, copy } from "../../utils/files.js";
 import path from "path";
 import { IResponse } from "./types/Response.js";
 
-export default async function use() {
+export default async function use(name: string) {
   const templates = getAllDirs(
     path.join(__dirname, "..", "..", "templates", "custom")
   );
   if (templates.length === 0) {
-    console.log(chalk.red("No custom templates found"));
+    console.log(chalk.red("No custom templates to use"));
+    process.exit(1);
+  }
+
+  if (name && templates.filter((t) => t === name).length === 0) {
+    console.log(chalk.red("No template with this name"));
     process.exit(1);
   }
   const response: IResponse = await prompt([
@@ -20,6 +25,7 @@ export default async function use() {
       message: chalk.blue("Pick your template"),
       initial: 0,
       choices: templates,
+      skip: name ? true : false,
     },
     {
       type: "input",
@@ -28,6 +34,8 @@ export default async function use() {
       initial: "xscaf-project",
     },
   ]);
+  if (name) response.template = name;
+
   console.time(chalk.blue("Done in"));
 
   const templatePath = path.join(
