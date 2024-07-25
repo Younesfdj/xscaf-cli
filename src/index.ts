@@ -5,13 +5,15 @@ import { hideBin } from "yargs/helpers";
 import init from "./commands/init/index.js";
 import add from "./commands/add/index.js";
 import use from "./commands/use/index.js";
+import cmdWrapper from "./utils/errors.js";
+
 const run = () =>
   yargs(hideBin(process.argv))
     .example("xscaf init express-app", "Initialize a new xscaf project")
     .example("xscaf add custom-template", "Add a custom scaffolding template")
     .example("xscaf use custom-template", "Use a custom scaffolding template")
     .command("init", "Initialize a new xscaf project", {}, function (argv) {
-      init(argv._);
+      cmdWrapper(init(argv._));
     })
     .command(
       "add PATH",
@@ -23,11 +25,11 @@ const run = () =>
         });
       },
       function (argv) {
-        add(argv.PATH as string);
+        cmdWrapper(add(argv.PATH as string));
       }
     )
     .command("use", "Use a custom template", {}, function (argv) {
-      use();
+      cmdWrapper(use());
     })
     .command("$0", false, {}, function (argv) {
       console.log(
