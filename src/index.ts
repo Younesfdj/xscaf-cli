@@ -3,45 +3,52 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import init from "./commands/init/index.js";
-import add from "./commands/add/index.js";
-import use from "./commands/use/index.js";
+import add from "./commands/tmpl/add/index.js";
+import use from "./commands/tmpl/use/index.js";
 import cmdWrapper from "./utils/errors.js";
 
 const run = () =>
   yargs(hideBin(process.argv))
     .example("xscaf init express-app", "Initialize a new xscaf project")
-    .example("xscaf add custom-template", "Add a custom scaffolding template")
+    .example("xscaf tmpl ls", "List all custom templates")
     .example(
-      "xscaf use -n custom-template",
+      "xscaf tmpl use -n custom-template",
       "Use a custom scaffolding template"
     )
     .command("init", "Initialize a new xscaf project", {}, function (argv) {
       cmdWrapper(init(argv._));
     })
     .command(
-      "add PATH",
-      "Add a custom template",
+      "tmpl <CMD>",
+      "Manage custom project templates. Use this command to add, use, list, or remove custom templates",
       (yargs) => {
-        yargs.positional("PATH", {
-          describe: "The path to the custom template",
-          type: "string",
-        });
-      },
-      function (argv) {
-        cmdWrapper(add(argv.PATH as string));
-      }
-    )
-    .command(
-      "use",
-      "Use a custom template",
-      (yargs) =>
-        yargs.option("name", {
-          alias: "n",
-          describe: "The name of template",
-          type: "string",
-        }),
-      function (argv) {
-        cmdWrapper(use(argv.name as string));
+        yargs
+          .command(
+            "add PATH",
+            "Add a custom template",
+            (yargs) => {
+              yargs.positional("PATH", {
+                describe: "The relative path to the custom template",
+                type: "string",
+              });
+            },
+            function (argv) {
+              cmdWrapper(add(argv.PATH as string));
+            }
+          )
+          .command(
+            "use",
+            "Use a custom template",
+            (yargs) =>
+              yargs.option("name", {
+                alias: "n",
+                describe: "The name of template",
+                type: "string",
+              }),
+            function (argv) {
+              cmdWrapper(use(argv.name as string));
+            }
+          );
       }
     )
     .command("$0", false, {}, function (argv) {

@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import pkg from "enquirer";
 const { prompt } = pkg;
-import { copyDir, __dirname, dirExists } from "../../utils/files.js";
+import { copyDir, __dirname, dirExists } from "../../../utils/files.js";
 import path from "path";
 import { IResponse } from "./types/Respone.js";
 
