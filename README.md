@@ -10,6 +10,8 @@
 - [Features](#features)
 - [Usage](#usage)
 - [Commands](#commands)
+- [Contribution](#contribution)
+- [License](#license)
 <!-- tocstop -->
 
 ## Features
@@ -83,6 +85,13 @@ For more documentation about the commands, run :
 ```
 $ xscaf <cmd> help
 ```
+## Contribution
+
+We welcome contributions to xscaf! For guidelines on how to contribute, please see our [CONTRIBUTING.md](https://github.com/Younesfdj/xscaf-cli/blob/main/CONTRIBUTING.md)
+
+## License
+
+This project is licensed under the terms of the MIT License. See the [LICENSE](https://github.com/Younesfdj/xscaf-cli/blob/main/LICENSE) file for details.
 
 ---
 
