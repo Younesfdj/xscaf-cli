@@ -6,6 +6,7 @@ const { prompt } = pkg;
 import { copy, editFile, __dirname } from "../../utils/files.js";
 import path from "path";
 import { IResponse } from "./types/Response.js";
+import terminalLink from "terminal-link";
 
 export default async function init(args: (string | number)[]) {
   // Check if the user provided a project name
@@ -96,5 +97,16 @@ export default async function init(args: (string | number)[]) {
         borderStyle: "classic",
         title: "Now run:",
       })
+  );
+  console.log(
+    chalk.blue.bold("\nAll set! Your project is good to go. 📦\n") +
+      chalk.blue("Stay connected and contribute at:\n\n") +
+      chalk.cyan(
+        terminalLink(
+          "xscaf GitHub Repository",
+          "https://github.com/Younesfdj/xscaf-cli"
+        )
+      ) +
+      "\n"
   );
 }
