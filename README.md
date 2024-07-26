@@ -3,23 +3,24 @@
 [![Version](https://img.shields.io/npm/v/xscaf.svg)](https://npmjs.org/package/xscaf)
 [![Downloads/week](https://img.shields.io/npm/dw/xscaf.svg)](https://npmjs.org/package/xscaf)
 
-xscaf is a powerful CLI tool designed to streamline the process of creating and managing Express.js applications. With xscaf, you can scaffold a fully structured backend project in seconds, saving you time and eliminating repetitive coding tasks.
+**xscaf** is a powerful CLI tool designed to streamline the process of creating and managing Express.js applications. With **xscaf**, you can scaffold a fully structured backend project in seconds, saving you time and eliminating repetitive coding tasks.
 
 <!-- toc -->
 
+- [Features](#features)
 - [Usage](#usage)
 - [Commands](#commands)
 <!-- tocstop -->
 
 ## Features
 
-- **Quick Project Initialization**: Generate a new Express.js project with customizable options for JavaScript or TypeScript.
-- **Structured Folder Setup**: Create organized folders for routes, controllers, and services.
-- **Microservices Architecture**: Best practices for scalable microservices.
-- **Swagger Documentation**: Generate Swagger docs for easy API documentation.
-- **Flexible Configuration**: Support for CommonJS, ESM, npm, pnpm, and yarn.
-- **Database and ORM Integration**: Initialize projects with MongoDB, PostgreSQL, Prisma, or Drizzle.
-- **Additional Tools**: Integrated logger library, Docker Compose file, and GitHub Actions workflow.
+- ⚡ **Quick Project Initialization**: Generate a new Express.js project with customizable options for JavaScript or TypeScript.
+- 🗂️ **Structured Folder Setup**: Create organized folders for routes, controllers, and services.
+- 🏗️ **Microservices Architecture**: Best practices for scalable microservices.
+- 📜 **Swagger Documentation**: Generate Swagger docs for easy API documentation.
+- 🔧 **Flexible Configuration**: Support for CommonJS, ESM, npm, pnpm, and yarn.
+- 🗄️ **Database and ORM Integration**: Initialize projects with MongoDB, PostgreSQL, Prisma, or Drizzle. (not supported yet)
+- 🛠️ **Additional Tools**: Integrated logger library, Docker Compose file, and GitHub Actions workflow.
 
 ## Usage
 
@@ -32,12 +33,12 @@ xscaf/1.0.0 linux-x64 node-v20.13.1
 $ xscaf --help
 USAGE
   $ xscaf COMMAND
-...
 ```
 
 ## Commands
 
 - [`xscaf init PROJECT_NAME`](#xscaf-init-project_name)
+- [`xscaf tmpl <CMD>`](#xscaf-tmpl-cmd)
 
 ### `xscaf init PROJECT_NAME`
 
@@ -57,4 +58,34 @@ EXAMPLES
   $ xscaf init my-app
 ```
 
-_See code: [src/commands/init.ts](https://github.com/Younesfdj/xscaf-cli/blob/main/src/commands/init/index.ts)_
+### `xscaf tmpl <CMD>`
+
+Manage custom templates for your projects.
+
+```
+USAGE
+  $ xscaf tmpl <CMD>
+
+COMMANDS
+  xscaf tmpl add PATH  Add a custom template
+  xscaf tmpl use       Use a custom template.
+  xscaf tmpl ls        List all your saved custom templates.
+  xscaf tmpl rm        Remove a custom template from your collection.
+
+EXAMPLES
+  $ xscaf tmpl add express-starter
+  $ xscaf tmpl use
+  $ xscaf tmpl ls
+  $ xscaf tmpl rm
+```
+
+For more documentation about the commands, run :
+```
+$ xscaf <cmd> help
+```
+
+---
+
+With **xscaf**, your Express.js project setup is just a command away! 🚀
+
+For more details, visit our [GitHub repository](https://github.com/Younesfdj/xscaf-cli). Happy coding! 😊
