@@ -62,3 +62,8 @@ export function getAllDirs(rootDirPath: string) {
     .filter((dirent) => dirent.isDirectory() && dirent.name !== ".git")
     .map((dirent) => dirent.name);
 }
+
+// a function to remove a directory and its content
+export function removeDir(dirPath: string) {
+  fs.rmSync(dirPath, { recursive: true, force: true });
+}

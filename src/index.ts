@@ -7,6 +7,7 @@ import tmplAdd from "./commands/tmpl/add/index.js";
 import cmdWrapper from "./utils/errors.js";
 import tmplUse from "./commands/tmpl/use/index.js";
 import tmplLs from "./commands/tmpl/ls/index.js";
+import tmplRm from "./commands/tmpl/rm/index.js";
 
 const run = () =>
   yargs(hideBin(process.argv))
@@ -63,8 +64,7 @@ const run = () =>
             "Remove a custom template from your collection.",
             {},
             (argv) => {
-              // Add your logic to remove a custom template
-              console.log("Deleting a custom template...");
+              cmdWrapper(tmplRm());
             }
           )
           .command("$0", false, {}, function (argv) {
