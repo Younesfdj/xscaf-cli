@@ -1,6 +1,6 @@
 {
   "name": "xscaf",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Use xscaf to kickstart your projects, integrate features, and streamline your Express development workflow.",
   "exports": "./bin/index.js",
   "node": ">=18",
@@ -21,6 +21,12 @@
   "bin": {
     "xscaf": "bin/index.js"
   },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Younesfdj/xscaf-cli/LICENSE"
+    }
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && npx tsc && npm install -g .",
@@ -41,5 +47,18 @@
     "@types/node": "^20.14.3",
     "@types/yargs": "^17.0.32",
     "typescript": "^5.4.5"
-  }
+  },
+  "keywords": [
+    "express",
+    "scaffold",
+    "cli",
+    "command-line",
+    "nodejs",
+    "javascript",
+    "typescript",
+    "microservices",
+    "swagger",
+    "api",
+    "template"
+  ]
 }
