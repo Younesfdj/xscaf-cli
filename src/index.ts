@@ -3,9 +3,10 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import init from "./commands/init/index.js";
-import add from "./commands/tmpl/add/index.js";
-import use from "./commands/tmpl/use/index.js";
+import tmplAdd from "./commands/tmpl/add/index.js";
 import cmdWrapper from "./utils/errors.js";
+import tmplUse from "./commands/tmpl/use/index.js";
+import tmplLs from "./commands/tmpl/ls/index.js";
 
 const run = () =>
   yargs(hideBin(process.argv))
@@ -33,12 +34,12 @@ const run = () =>
               });
             },
             function (argv) {
-              cmdWrapper(add(argv.PATH as string));
+              cmdWrapper(tmplAdd(argv.PATH as string));
             }
           )
           .command(
             "use",
-            "Use a custom template",
+            "Use a custom template.",
             (yargs) =>
               yargs.option("name", {
                 alias: "n",
@@ -46,9 +47,33 @@ const run = () =>
                 type: "string",
               }),
             function (argv) {
-              cmdWrapper(use(argv.name as string));
+              cmdWrapper(tmplUse(argv.name as string));
             }
-          );
+          )
+          .command(
+            "ls",
+            "List all your saved custom templates.",
+            {},
+            (argv) => {
+              cmdWrapper(tmplLs());
+            }
+          )
+          .command(
+            "rm",
+            "Remove a custom template from your collection.",
+            {},
+            (argv) => {
+              // Add your logic to remove a custom template
+              console.log("Deleting a custom template...");
+            }
+          )
+          .command("$0", false, {}, function (argv) {
+            console.log(
+              `Unrecognized command '${argv._.join(
+                " "
+              )}'\nRun 'xscaf --help' for usage.`
+            );
+          });
       }
     )
     .command("$0", false, {}, function (argv) {
